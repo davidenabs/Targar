@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand */
+  --color-brand-pink: #e91859;
+  --color-brand-pink-dark: #c4134a;
+  --color-brand-pink-tint: #fdedf1;
+
+  /* Ink (text) */
+  --color-ink: #111111;
+  --color-ink-muted: #5b5b63;
+  --color-ink-faint: #9b9ba3;
+
+  /* Surfaces */
+  --color-surface: #ffffff;
+  --color-surface-alt: #faf9fb;
+  --color-surface-dark: #0e0e12;
+
+  --color-border: #ebeaee;
+  --color-success: #1ca672;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 28px;
+
+  --shadow-card: 0 2px 8px rgba(17, 17, 17, 0.04), 0 1px 2px rgba(17, 17, 17, 0.06);
+  --shadow-card-hover: 0 16px 32px rgba(17, 17, 17, 0.08);
+  --shadow-float: 0 24px 60px rgba(233, 24, 89, 0.18);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-7xl: 1280px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
