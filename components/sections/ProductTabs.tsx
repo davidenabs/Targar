@@ -106,7 +106,7 @@ export default function ProductTabs({ tabs }: { tabs: any[] }) {
               >
                  
                  {/* Large Mockup Area */}
-                 <div className="w-full xl:w-[45%] h-[400px] lg:h-[640px] bg-gray-50/60 rounded-[2.5rem] p-4 lg:p-8 flex items-center justify-center relative overflow-hidden border border-gray-100 shadow-sm group">
+                 <div className="w-full xl:w-[45%] h-[400px] lg:h-[640px] bg-gray-50/60 rounded-[2.5rem] p-4 lg:p-8 md:flex items-center justify-center relative overflow-hidden border border-gray-100 shadow-sm group hidden">
                     <Image 
                        src={activeTab.image} 
                        alt={activeTab.label} 

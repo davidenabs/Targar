@@ -92,7 +92,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: easeOutExpo }}
-          className="relative w-full md:w-[45%] lg:w-[40%] flex justify-end z-10 mt-8 md:mt-0"
+          className="relative w-full md:w-[45%] lg:w-[40%] md:flex justify-end z-10 mt-8 md:mt-0 hidden"
         >
           {/* Main phone mockup */}
           <div className="relative z-10 w-[90%] sm:w-[80%] md:w-[100%] max-w-[450px] drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] aspect-[4/5] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden  ml-auto">
@@ -143,30 +143,6 @@ export default function Hero() {
         </motion.div>
       </Container>
 
-      {/* Stats Section resembling the bottom of Raven's hero */}
-      <div className="relative z-20 bg-white border-t border-gray-100 py-10 sm:py-12 md:py-16 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4 divide-x-0 md:divide-x divide-gray-100">
-            {stats.map((stat, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex flex-col items-center justify-center text-center px-2 sm:px-4"
-              >
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#1A1A1A] mb-1.5 sm:mb-2 tracking-tight">
-                  {stat.value}
-                </h3>
-                <p className="text-[10px] sm:text-[11px] md:text-[13px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </Container>
-      </div>
     </div>
   );
 }
