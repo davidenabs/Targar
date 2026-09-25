@@ -1,12 +1,23 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 
 export default function ProductTabs({ tabs }: { tabs: any[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isStickyScroll, setIsStickyScroll] = useState(true); // Default to true for SSR, then correct on mount
+
+  // Hydration-safe screen size check: Enable sticky scroll only on md (768px) and up
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsStickyScroll(window.innerWidth >= 768);
+    };
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
   // Track the scroll progress through the massive container
   const { scrollYProgress } = useScroll({
@@ -14,28 +25,30 @@ export default function ProductTabs({ tabs }: { tabs: any[] }) {
     offset: ["start start", "end end"]
   });
 
-  // Update active tab based on scroll percentage
+  // Update active tab based on scroll percentage ONLY if sticky scroll is active
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const chunk = 1 / tabs.length;
-    // Map latest (0 to 1) to an index (0 to tabs.length - 1)
-    const index = Math.min(Math.floor(latest / chunk), tabs.length - 1);
-    
-    if (index !== activeIndex) {
-      setActiveIndex(index);
+    if (isStickyScroll) {
+      const chunk = 1 / tabs.length;
+      // Map latest (0 to 1) to an index (0 to tabs.length - 1)
+      const index = Math.min(Math.floor(latest / chunk), tabs.length - 1);
+      
+      if (index !== activeIndex) {
+        setActiveIndex(index);
+      }
     }
   });
 
   const activeTab = tabs[activeIndex];
 
   return (
-    // The scroll track - height determines how long the sticky effect lasts
-    <div ref={containerRef} style={{ height: `${tabs.length * 100}vh` }} className="relative w-full">
+    // The scroll track - on mobile it's just 'auto', on tablet/desktop it's '300vh' to allow scrolling
+    <div ref={containerRef} style={{ height: isStickyScroll ? `${tabs.length * 100}vh` : 'auto' }} className="relative w-full">
       
-      // The sticky container that stays in the viewport
-      <div className="sticky top-24 lg:top-32 w-full flex flex-col justify-start pb-20">
+      {/* The sticky container that stays in the viewport on desktop, but behaves normally on mobile */}
+      <div className={`${isStickyScroll ? "sticky top-24 lg:top-32" : "relative"} w-full flex flex-col justify-start pb-10 md:pb-20`}>
         
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-24 w-full">
-          {/* Left Sidebar - Clickable for fast-travel */}
+          {/* Left Sidebar - Clickable for fast-travel (Desktop Only) */}
           <div className="hidden lg:block w-[200px] shrink-0 mt-12">
             <ul className="space-y-12">
               {tabs.map((tab, idx) => {
@@ -69,7 +82,7 @@ export default function ProductTabs({ tabs }: { tabs: any[] }) {
             </ul>
           </div>
 
-          {/* Mobile tabs indicator (hidden on desktop) */}
+          {/* Mobile/Tablet tabs indicator */}
           <div className="flex lg:hidden overflow-x-auto gap-6 pb-4 w-full z-20 border-b border-gray-100 mb-4">
              {tabs.map((tab, idx) => {
                 const isActive = activeIndex === idx;
@@ -77,10 +90,16 @@ export default function ProductTabs({ tabs }: { tabs: any[] }) {
                   <button 
                     key={tab.id}
                     onClick={() => {
-                      if (containerRef.current) {
-                        const top = containerRef.current.offsetTop;
-                        const height = window.innerHeight;
-                        window.scrollTo({ top: top + (idx * height), behavior: "smooth" });
+                      if (isStickyScroll) {
+                        // On Tablet: Fast scroll the sticky track
+                        if (containerRef.current) {
+                          const top = containerRef.current.offsetTop;
+                          const height = window.innerHeight;
+                          window.scrollTo({ top: top + (idx * height), behavior: "smooth" });
+                        }
+                      } else {
+                        // On Mobile: Just swap the active index directly
+                        setActiveIndex(idx);
                       }
                     }}
                     className={`text-[10px] whitespace-nowrap font-bold uppercase tracking-[0.2em] transition-all duration-300 ${
@@ -94,7 +113,7 @@ export default function ProductTabs({ tabs }: { tabs: any[] }) {
           </div>
 
           {/* Right Content - Fades in/out in place */}
-          <div className="flex-1 w-full min-h-[600px] lg:min-h-[640px] relative">
+          <div className={`flex-1 w-full ${isStickyScroll ? 'min-h-[600px] lg:min-h-[640px]' : ''} relative`}>
             <AnimatePresence mode="wait">
               <motion.div 
                 key={activeTab.id}
@@ -102,10 +121,10 @@ export default function ProductTabs({ tabs }: { tabs: any[] }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="absolute inset-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 lg:gap-12"
+                className={`${isStickyScroll ? 'absolute inset-0' : 'relative w-full'} flex flex-col xl:flex-row items-start xl:items-center gap-8 lg:gap-12`}
               >
                  
-                 {/* Large Mockup Area */}
+                 {/* Large Mockup Area (Hidden on mobile via 'hidden md:flex') */}
                  <div className="w-full xl:w-[45%] h-[400px] lg:h-[640px] bg-gray-50/60 rounded-[2.5rem] p-4 lg:p-8 md:flex items-center justify-center relative overflow-hidden border border-gray-100 shadow-sm group hidden">
                     <Image 
                        src={activeTab.image} 
