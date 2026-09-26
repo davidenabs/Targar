@@ -158,13 +158,13 @@ export const market = {
     {
       tag: "CUSTOMER",
       title: "Zero-Hardware Payments",
-      subtitle: "NO CARDS, NO CASH",
+      subtitle: "NO CARDS, NO CASH, NO SMARTPHONE ACCESS",
       quote: "You don't need cash, cards, or even your smartphone at the point of payment.",
     },
     {
       tag: "MERCHANT",
       title: "Faster Payouts",
-      subtitle: "NO TERMINAL REQUIRED",
+      subtitle: "NO TERMINAL REQUIRED, JUST THE SMARTPHONE THEY ALREADY OWN",
       quote: "Accept secure payments instantly using just the smartphone you already own.",
     },
     {
