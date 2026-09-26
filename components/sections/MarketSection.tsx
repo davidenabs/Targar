@@ -53,6 +53,13 @@ function MarketCard({ imageSrc, imageAlt, tag, title, subtitle, quote }: MarketC
 }
 
 export default function MarketSection() {
+  // Combine image sources with card text content
+  const marketCards = [
+    { ...market.cards[0], imageSrc: market.gallery[0].src, imageAlt: market.gallery[0].alt },
+    { ...market.cards[1], imageSrc: market.gallery[1].src, imageAlt: market.gallery[1].alt },
+    { ...market.cards[2], imageSrc: market.lead.src, imageAlt: market.lead.alt },
+  ];
+
   return (
     <section id="markets" className="py-16 lg:py-28 bg-surface">
       <Container>
@@ -62,7 +69,7 @@ export default function MarketSection() {
           </span>
           <h2 className="mt-2 text-[32px] sm:text-[40px] lg:text-[48px] font-extrabold leading-[1.05] tracking-tight">
             <span className="block text-gray-400 font-medium mb-1">
-              Payment infrastructure for
+              {market.headingPrefix}
             </span>
             <span className="block text-[#1A1A1A]">
               {market.heading}
@@ -71,28 +78,17 @@ export default function MarketSection() {
         </div>
 
         <RevealOnScroll variants={fadeUp} className="flex flex-col lg:flex-row gap-4 lg:gap-5 w-full lg:h-[380px] xl:h-[420px]">
-          <MarketCard
-            imageSrc={market.gallery[0].src}
-            imageAlt={market.gallery[0].alt}
-            tag="CUSTOMER"
-            title="Instant Payments"
-            subtitle="NO TERMINAL REQUIRED"
-          />
-          <MarketCard
-            imageSrc={market.gallery[1].src}
-            imageAlt={market.gallery[1].alt}
-            tag="MERCHANT"
-            title="Faster Payouts"
-            subtitle="OPEN-AIR MARKETS"
-          />
-          <MarketCard
-            imageSrc={market.lead.src}
-            imageAlt={market.lead.alt}
-            tag="INFRASTRUCTURE"
-            title="Every trader is a merchant"
-            subtitle="POWERING INFORMAL TRADE"
-            quote={market.lead.caption}
-          />
+          {marketCards.map((card, i) => (
+            <MarketCard
+              key={i}
+              imageSrc={card.imageSrc}
+              imageAlt={card.imageAlt}
+              tag={card.tag}
+              title={card.title}
+              subtitle={card.subtitle}
+              quote={card.quote}
+            />
+          ))}
         </RevealOnScroll>
 
         {/* Desktop-only continuous drift, restating the same photos for texture/motion */}

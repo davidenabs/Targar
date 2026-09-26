@@ -150,9 +150,30 @@ export const product = {
 
 export const market = {
   eyebrow: "Built for the market",
+  headingPrefix: "Payment infrastructure for",
   heading: "Where Nigeria actually trades",
   intro:
     "Not a boutique or a checkout page — the open-air market, the roadside stall, the trader calling out prices over a pile of tomatoes. TARGAR is built for how money already moves there, just without the card reader.",
+  cards: [
+    {
+      tag: "CUSTOMER",
+      title: "Zero-Hardware Payments",
+      subtitle: "NO CARDS, NO CASH",
+      quote: "You don't need cash, cards, or even your smartphone at the point of payment.",
+    },
+    {
+      tag: "MERCHANT",
+      title: "Faster Payouts",
+      subtitle: "NO TERMINAL REQUIRED",
+      quote: "Accept secure payments instantly using just the smartphone you already own.",
+    },
+    {
+      tag: "INFRASTRUCTURE",
+      title: "Every trader is a merchant",
+      subtitle: "POWERING INFORMAL TRADE",
+      quote: "Every trader is already a merchant \u2014 TARGAR just removes the terminal.",
+    },
+  ],
   lead: {
     src: "/images/market-apron.jpg",
     alt: "A TARGAR trader packs fresh tomatoes into a bag while completing a payment on her phone",
