@@ -39,7 +39,7 @@ const SocialIcon = ({ label }: { label: string }) => {
 export default function Footer() {
   return (
     <footer className="bg-[#101014] text-white overflow-hidden relative">
-      <Container className="pt-20 lg:pt-24 pb-12 relative z-10">
+      <Container className="pt-20 lg:pt-24 pb-12 relative">
 
         {/* Logo */}
         <div className="mb-12">
@@ -149,7 +149,13 @@ export default function Footer() {
             </div>
 
             <div className="max-w-[200px]">
-              <h5 className="text-[10px] font-bold text-white uppercase tracking-wider mb-4"> visit our headquarters </h5>
+              <h5 className="flex items-center gap-2 text-[10px] font-bold text-white uppercase tracking-wider mb-4">
+                <svg className="w-4 h-4 text-brand-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                visit our headquarters
+              </h5>
               <p className="text-[11px] text-gray-400 italic leading-relaxed">
                 {siteConfig.contact.address}
               </p>

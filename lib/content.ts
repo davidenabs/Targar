@@ -18,9 +18,9 @@ export const siteConfig = {
     address: "ESBS, Independence Layout, Enugu State Nigeria",
   },
   social: [
-    { label: "Facebook", href: "https://www.facebook.com/share/1APCUwsz8m/" },
-    { label: "X", href: "https://x.com/Targar_App" },
-    { label: "Instagram", href: "https://www.instagram.com/targar.app?igsh=MzB5NjVkMHExZjNr" },
+    { label: "Facebook", href: "https://www.facebook.com/share/19BnC45e4c/" },
+    { label: "X", href: "https://x.com/TargarFinance" },
+    { label: "Instagram", href: "https://www.instagram.com/targar_hq?stkn=MzB5NjVkMHExZjNr" },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/company/targar-finance-software-innovations-and-technologies-limited/",

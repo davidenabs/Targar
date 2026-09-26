@@ -27,7 +27,7 @@ export default function AppStoreModal({
 
       <Modal open={open} onClose={() => setOpen(false)} titleId="app-store-modal-title">
         <div className="flex flex-col items-center text-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-pink to-[#ff5c8a] text-white">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-brand-pink to-[#ff5c8a] text-white">
             <ClockGlyph />
           </div>
           <h2 id="app-store-modal-title" className="mt-5 text-xl font-extrabold text-ink">
