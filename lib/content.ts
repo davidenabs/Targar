@@ -15,7 +15,7 @@ export const siteConfig = {
     email: "support@targar-app.com",
     phone: "+234 805 958 6817",
     phoneHref: "tel:+2348059586817",
-    address: "Enugu State, Nigeria",
+    address: "ESBS, Independence Layout, Enugu State Nigeria",
   },
   social: [
     { label: "Facebook", href: "https://www.facebook.com/share/1APCUwsz8m/" },
@@ -36,7 +36,7 @@ export const nav = [
 
 export const hero = {
   eyebrow: "Built for Nigeria's markets",
-  headline: "Money should move even where cards, POS, and cash can't.",
+  headline: `Money should move even where cards, POS, and cash can't.`,
   subtext:
     "TARGAR is payment infrastructure built for Nigeria's informal markets — letting traders and customers send, receive, and accept payments using only a phone number and a secure digital identity. No card. No terminal. No cash in hand.",
   trustRow: ["No bank card needed", "No POS terminal", "No cash required"],

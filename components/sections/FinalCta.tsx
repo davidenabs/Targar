@@ -4,6 +4,7 @@ import AppStoreModal from "@/components/AppStoreModal";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { finalCta, siteConfig } from "@/lib/content";
 import { fadeUp } from "@/lib/motion";
+import { Icons } from "@/components/ui/icons";
 
 export default function FinalCta() {
   const splitIndex = finalCta.heading.indexOf(" and ");
@@ -23,7 +24,7 @@ export default function FinalCta() {
           <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
             {finalCta.eyebrow}
           </span>
-          
+
           <h2 className="mt-4 text-[40px] sm:text-[56px] lg:text-[72px] font-extrabold leading-[1.05] tracking-tight">
             <span className="block bg-linear-to-r from-[#A880FF] via-[#D896FF] to-[#FF80A8] bg-clip-text text-transparent pb-2 font-normal">
               {firstPart}
@@ -32,23 +33,24 @@ export default function FinalCta() {
               {secondPart}
             </span>
           </h2>
-          
+
           <p className="mt-6 text-[15px] sm:text-[17px] leading-relaxed text-gray-400 max-w-xl mx-auto">
             {finalCta.body}
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
-              as="a" 
-              href={siteConfig.playStoreUrl} 
-              target="_blank" 
+            <Button
+              as="a"
+              href={siteConfig.playStoreUrl}
+              target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full! px-8 py-3.5 text-base font-bold bg-[#8A58FF]! hover:bg-[#7846ED]! text-white! border-0! shadow-lg shadow-[#8A58FF]/20! transition-all!"
+              className="rounded-full! px-8 py-3.5 text-base font-bold bg-[#8A58FF]! hover:bg-[#7846ED]! text-white! border-0! shadow-lg shadow-[#8A58FF]/20! transition-all! flex items-center justify-center gap-2"
             >
+              <Icons.googlePlay className="w-5 h-5" />
               Get it on Google Play
             </Button>
-            <AppStoreModal 
-              buttonClassName="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-base font-semibold text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink focus-visible:ring-offset-2 focus-visible:ring-offset-[#101014]" 
+            <AppStoreModal
+              buttonClassName="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-base font-semibold text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink focus-visible:ring-offset-2 focus-visible:ring-offset-[#101014]"
             />
           </div>
 
@@ -60,3 +62,4 @@ export default function FinalCta() {
     </section>
   );
 }
+

@@ -7,13 +7,14 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import MobileNav from "@/components/layout/MobileNav";
 import { nav, siteConfig } from "@/lib/content";
+import { Icons } from "../ui/icons";
 
 export default function Header() {
   const [solid, setSolid] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
-  
+
   // Use a ref to always have the latest hover state in the event listener without re-binding
   const isHoveredRef = useRef(isHovered);
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Header() {
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       clearTimeout(scrollTimeout);
@@ -48,7 +49,7 @@ export default function Header() {
   // Effect to handle hover state changes independently
   useEffect(() => {
     let hoverTimeout: NodeJS.Timeout;
-    
+
     if (isHovered) {
       setIsVisible(true);
     } else {
@@ -59,14 +60,14 @@ export default function Header() {
         }
       }, 2000);
     }
-    
+
     return () => clearTimeout(hoverTimeout);
   }, [isHovered]);
 
   return (
     <>
       {/* Invisible hover zone at the top of the screen to reveal the header */}
-      <div 
+      <div
         className="fixed top-0 inset-x-0 h-6 z-[60]"
         onMouseEnter={() => setIsHovered(true)}
       />
@@ -74,9 +75,8 @@ export default function Header() {
       <header
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 ease-in-out ${
-          solid ? "py-4" : "py-6 lg:py-8"
-        } ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 ease-in-out ${solid ? "py-4" : "py-6 lg:py-8"
+          } ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}
       >
         <Container className="flex items-center justify-between">
           <Link href="/" className="relative block h-8 w-[112px] lg:h-9 lg:w-[132px]">
@@ -89,12 +89,11 @@ export default function Header() {
             />
           </Link>
 
-          <div 
-            className={`hidden lg:flex items-center transition-all duration-300 backdrop-blur-lg ${
-              solid 
-                ? "bg-white/95 border border-gray-100" 
-                : "bg-white/80 border border-transparent"
-            } rounded-full pl-8 gap-8`}
+          <div
+            className={`hidden lg:flex items-center transition-all duration-300 backdrop-blur-lg ${solid
+              ? "bg-white/95 border border-gray-100"
+              : "bg-white/80 border border-transparent"
+              } rounded-full pl-8 gap-8`}
           >
             <nav className="flex items-center gap-8">
               {nav.map((item) => (
@@ -115,6 +114,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="!rounded-full px-7 py-3 text-sm shadow-md shadow-brand-pink/20"
             >
+              <Icons.googlePlay className="w-5 h-5" />
               Download the App
             </Button>
           </div>

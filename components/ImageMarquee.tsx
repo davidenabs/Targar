@@ -22,7 +22,7 @@ export default function ImageMarquee({ items }: { items: Item[] }) {
   const looped = [...items, ...items];
 
   return (
-    <div className="relative hidden lg:block overflow-hidden">
+    <div className="relative overflow-hidden">
       <div ref={trackRef} className="marquee-track flex gap-5 w-max">
         {looped.map((item, i) => (
           <figure key={i} className="relative w-64 shrink-0 rounded-xl overflow-hidden">

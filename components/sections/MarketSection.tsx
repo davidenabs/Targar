@@ -1,10 +1,56 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import ImageMarquee from "@/components/ImageMarquee";
 import { market } from "@/lib/content";
 import { fadeUp } from "@/lib/motion";
+
+interface MarketCardProps {
+  imageSrc: string | StaticImageData;
+  imageAlt: string;
+  tag: string;
+  title: string;
+  subtitle: string;
+  quote?: string;
+}
+
+function MarketCard({ imageSrc, imageAlt, tag, title, subtitle, quote }: MarketCardProps) {
+  return (
+    <figure className="relative rounded-[1.5rem] overflow-hidden flex-1 lg:hover:flex-[2] transition-all duration-700 ease-out aspect-[4/5] lg:aspect-auto group shadow-sm cursor-pointer">
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        fill
+        sizes="(min-width: 1024px) 33vw, 100vw"
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-100" />
+      <div className="absolute top-5 left-5">
+        <span className="px-3 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[9px] font-bold text-white uppercase tracking-wider">
+          {tag}
+        </span>
+      </div>
+      <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8">
+        <h3 className="text-[22px] font-bold text-white mb-1 tracking-tight leading-tight line-clamp-3">
+          {title}
+        </h3>
+        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.1em]">
+          {subtitle}
+        </p>
+        {quote && (
+          <div className="grid grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] transition-all duration-700 ease-out mt-2">
+            <div className="overflow-hidden">
+              <p className="text-[13px] text-gray-300 italic max-w-[90%] leading-relaxed pt-2">
+                "{quote}"
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </figure>
+  );
+}
 
 export default function MarketSection() {
   return (
@@ -24,72 +70,29 @@ export default function MarketSection() {
           </h2>
         </div>
 
-        <RevealOnScroll variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {/* Card 1 */}
-          <figure className="relative rounded-[1.5rem] overflow-hidden aspect-[4/5] lg:col-span-1 group shadow-sm">
-            <Image
-              src={market.gallery[0].src}
-              alt={market.gallery[0].alt}
-              fill
-              sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90" />
-            <div className="absolute top-5 left-5">
-              <span className="px-3 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[9px] font-bold text-white uppercase tracking-wider">
-                CUSTOMER
-              </span>
-            </div>
-            <div className="absolute bottom-5 left-5 right-5">
-              <h3 className="text-[22px] font-bold text-white mb-0.5 tracking-tight">Instant Payments</h3>
-              <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.1em]">NO TERMINAL REQUIRED</p>
-            </div>
-          </figure>
-
-          {/* Card 2 */}
-          <figure className="relative rounded-[1.5rem] overflow-hidden aspect-[4/5] lg:col-span-1 group shadow-sm">
-            <Image
-              src={market.gallery[1].src}
-              alt={market.gallery[1].alt}
-              fill
-              sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90" />
-            <div className="absolute top-5 left-5">
-              <span className="px-3 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[9px] font-bold text-white uppercase tracking-wider">
-                MERCHANT
-              </span>
-            </div>
-            <div className="absolute bottom-5 left-5 right-5">
-              <h3 className="text-[22px] font-bold text-white mb-0.5 tracking-tight">Faster Payouts</h3>
-              <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.1em]">OPEN-AIR MARKETS</p>
-            </div>
-          </figure>
-
-          {/* Card 3 */}
-          <figure className="relative rounded-[1.5rem] overflow-hidden aspect-square md:aspect-auto md:h-full lg:col-span-2 group shadow-sm">
-            <Image
-              src={market.lead.src}
-              alt={market.lead.alt}
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent opacity-90" />
-            <div className="absolute top-5 left-5">
-              <span className="px-3 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[9px] font-bold text-white uppercase tracking-wider">
-                INFRASTRUCTURE
-              </span>
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 lg:bottom-8 lg:left-8 lg:right-8">
-              <h3 className="text-3xl lg:text-[34px] font-bold text-white mb-1 tracking-tight">Every trader is a merchant</h3>
-              <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.1em] mb-3">POWERING INFORMAL TRADE</p>
-              <p className="text-[13px] text-gray-300 italic max-w-[90%] leading-relaxed">
-                "{market.lead.caption}"
-              </p>
-            </div>
-          </figure>
+        <RevealOnScroll variants={fadeUp} className="flex flex-col lg:flex-row gap-4 lg:gap-5 w-full lg:h-[380px] xl:h-[420px]">
+          <MarketCard
+            imageSrc={market.gallery[0].src}
+            imageAlt={market.gallery[0].alt}
+            tag="CUSTOMER"
+            title="Instant Payments"
+            subtitle="NO TERMINAL REQUIRED"
+          />
+          <MarketCard
+            imageSrc={market.gallery[1].src}
+            imageAlt={market.gallery[1].alt}
+            tag="MERCHANT"
+            title="Faster Payouts"
+            subtitle="OPEN-AIR MARKETS"
+          />
+          <MarketCard
+            imageSrc={market.lead.src}
+            imageAlt={market.lead.alt}
+            tag="INFRASTRUCTURE"
+            title="Every trader is a merchant"
+            subtitle="POWERING INFORMAL TRADE"
+            quote={market.lead.caption}
+          />
         </RevealOnScroll>
 
         {/* Desktop-only continuous drift, restating the same photos for texture/motion */}

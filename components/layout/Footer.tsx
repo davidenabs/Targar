@@ -149,7 +149,7 @@ export default function Footer() {
             </div>
 
             <div className="max-w-[200px]">
-              <h5 className="text-[10px] font-bold text-white uppercase tracking-wider mb-4">COME SAY HI...</h5>
+              <h5 className="text-[10px] font-bold text-white uppercase tracking-wider mb-4"> visit our headquarters </h5>
               <p className="text-[11px] text-gray-400 italic leading-relaxed">
                 {siteConfig.contact.address}
               </p>

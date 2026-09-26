@@ -10,7 +10,7 @@ import AppStoreModal from "@/components/AppStoreModal";
 import { hero, siteConfig } from "@/lib/content";
 import { easeOutExpo } from "@/lib/motion";
 
-const words = hero.headline.split(" ");
+const words = hero.headline.replace(/<br\s*\/?>/gi, " <br/> ").split(" ");
 
 const stats = [
   { value: "500K+", label: "REGISTERED USERS" },
@@ -28,7 +28,7 @@ export default function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <div className="relative bg-[#F8F9FA] pt-28 md:pt-32 lg:pt-40 overflow-hidden">
+    <div ref={ref} className="relative bg-[#F8F9FA] pt-28 md:pt-32 lg:pt-40 overflow-hidden">
       {/* Background Shapes mimicking Raven Bank */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#E5E7EB] opacity-60 rounded-full blur-[100px]" />
@@ -42,17 +42,17 @@ export default function Hero() {
         <div className="w-full md:w-[55%] lg:w-[60%] z-10 flex-shrink-0">
           <h1 className="text-[40px] sm:text-[48px] md:text-[50px] lg:text-[68px] xl:text-[76px] font-extrabold leading-[1.05] tracking-[-0.03em] text-[#1A1A1A]">
             {words.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.05, ease: easeOutExpo }}
-                className={`inline-block mr-[0.24em] ${
-                  i >= 5 ? "text-brand-pink" : "font-normal"
-                }`}
-              >
-                {word}
-              </motion.span>
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.05, ease: easeOutExpo }}
+                  className={`inline-block mr-[0.24em] ${
+                    i >= 5 ? "text-brand-pink" : "font-normal"
+                  }`}
+                >
+                  {word}
+                </motion.span>
             ))}
           </h1>
 
