@@ -12,7 +12,7 @@ export default function FinalCta() {
   const secondPart = splitIndex !== -1 ? finalCta.heading.substring(splitIndex) : "";
 
   return (
-    <section id="download" className="relative py-20 lg:py-32 bg-[#101014] overflow-hidden rounded-t-[2.5rem]">
+    <section id="download" className="relative py-20 lg:py-32 bg-brand-pink overflow-hidden rounded-t-[2.5rem]">
       {/* Background glow effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[40%] h-[60%] bg-brand-pink/10 blur-[120px] rounded-full" />
@@ -21,12 +21,12 @@ export default function FinalCta() {
 
       <Container className="relative z-10">
         <RevealOnScroll variants={fadeUp} className="max-w-3xl mx-auto text-center">
-          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white">
             {finalCta.eyebrow}
           </span>
 
           <h2 className="mt-4 text-[40px] sm:text-[56px] lg:text-[72px] font-extrabold leading-[1.05] tracking-tight">
-            <span className="block bg-linear-to-r from-[#A880FF] via-[#D896FF] to-[#FF80A8] bg-clip-text text-transparent pb-2 font-normal">
+            <span className="block bg-linear-to-r from-surface via-[#ca83f8] to-[#ff80c2] bg-clip-text text-white pb-2 font-normal">
               {firstPart}
             </span>
             <span className="block text-white">
@@ -34,7 +34,7 @@ export default function FinalCta() {
             </span>
           </h2>
 
-          <p className="mt-6 text-[15px] sm:text-[17px] leading-relaxed text-gray-400 max-w-xl mx-auto">
+          <p className="mt-6 text-[15px] sm:text-[17px] leading-relaxed text-white max-w-xl mx-auto">
             {finalCta.body}
           </p>
 
@@ -44,7 +44,7 @@ export default function FinalCta() {
               href={siteConfig.playStoreUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full! px-8 py-3.5 text-base font-bold bg-[#8A58FF]! hover:bg-[#7846ED]! text-white! border-0! shadow-lg shadow-[#8A58FF]/20! transition-all! flex items-center justify-center gap-2"
+              className="rounded-full! px-8 py-3.5 text-base font-bold bg-white hover:bg-white/80! text-brand-pink! border-0! shadow-lg shadow-white/20! transition-all! flex items-center justify-center gap-2"
             >
               <Icons.googlePlay className="w-5 h-5" />
               Get it on Google Play
@@ -54,7 +54,7 @@ export default function FinalCta() {
             />
           </div>
 
-          <p className="mt-8 text-xs text-gray-600 font-medium tracking-wide">
+          <p className="mt-8 text-xs text-white font-medium tracking-wide">
             {finalCta.fineprint}
           </p>
         </RevealOnScroll>

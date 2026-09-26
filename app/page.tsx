@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <EquationStrip />
+      {/* <EquationStrip /> */}
       <HowItWorks />
       <ProductFeatures />
       <MarketSection />
